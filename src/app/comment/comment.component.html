@@ -1,0 +1,43 @@
+<h4>Добавьте ваш комментарий </h4>
+
+<div style="margin-top: 26px;">
+  <form (ngSubmit)="addComment(form)" #form="ngForm" >
+  <div class="form-group" >
+     <label>Имя: </label>
+     <input [ngClass]="{'has-error':name.invalid && isInvalid}"
+       type="text"
+       class="form-control"
+       name="name"
+       #name="ngModel"
+       required
+       [(ngModel)]="commentName"
+       style=" margin-left: 120px;width:200px" />
+    <p *ngIf="name.invalid && isInvalid" style="color:red">Введите Ваше имя</p>
+  </div>
+  <div class="form-group" >
+     <label>Комментарий: </label>
+     <textarea [ngClass]="{'has-error':comment.invalid && isInvalid}"
+       name="comment"
+       required
+       class="form-control"
+       #comment="ngModel"
+       [(ngModel)]="commentComment"
+       style="margin-left: 120px; width:300px"  ></textarea>
+    <p *ngIf="comment.invalid && isInvalid" style="color:red">Введите комментарий</p>
+
+  </div>
+  <div>
+    <button type="submit">Добавить комментрарий</button>
+  </div>
+   </form>
+
+  <ul>
+    <li *ngFor="let comment of comments | reverse" style="border-bottom: 1px solid grey;">
+      Имя: {{comment.name}}<br>
+      Комментарии: {{comment.comment}}<br>
+      {{response}}
+      <button class="btn btn-xs btn-danger" (click)="deleteComment(comment)">Удалить комментарий</button>
+
+    </li>
+  </ul>
+</div>

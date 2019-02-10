@@ -1,0 +1,44 @@
+
+<!--=========================
+ Header
+===========================-->
+<header>
+  <nav id="sticktop" class="navbar navbar-default" style="position:fixed;top:0px" data-sticky="true">
+    <div class="container">
+      <div class="navbar-header">
+        <button (click)="makeVisible(true)" type="button" class="navbar-toggle" > <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+        <a class="navbar-brand" href="#"><img src="/assets/img/logo.png" style="width:270px" alt="logo"/></a> </div>
+      <div  [ngClass]="{'navbarDisplay':visible ==false}" class="collapse2" >
+        <ul class="nav navbar-nav">
+          <li routerLinkActive="active"><a routerLink="/about" (click)="makeVisible(false)">HOME</a></li>
+
+          <li routerLinkActive="active"><a routerLink="/news" (click)="makeVisible(false)">NEWS</a></li>
+          <li routerLinkActive="active"><a routerLink="/gallery" (click)="makeVisible(false)">PHOTOS</a></li>
+
+          <li routerLinkActive="active"><a routerLink="/music" routerLinkActive="active" (click)="makeVisible(false)">MUSIC</a></li>
+          <li routerLinkActive="active"><a routerLink="/media" routerLinkActive="active" (click)="makeVisible(false)">VIDEO</a></li>
+          <li routerLinkActive="active"><a routerLink="/tours" (click)="makeVisible(false)">TOUR</a></li>
+        </ul>
+      </div>
+      <div class="collapse1">
+        <ul class="nav navbar-nav">
+          <li routerLinkActive="active"><a routerLink="/about" (click)="makeVisible(false)">HOME</a></li>
+
+          <li routerLinkActive="active"><a routerLink="/news" (click)="makeVisible(false)">NEWS</a></li>
+          <li routerLinkActive="active"><a routerLink="/gallery" (click)="makeVisible(false)">PHOTOS</a></li>
+
+          <li routerLinkActive="active"><a routerLink="/music" routerLinkActive="active" (click)="makeVisible(false)">MUSIC</a></li>
+          <li routerLinkActive="active"><a routerLink="/media" routerLinkActive="active" (click)="makeVisible(false)">VIDEO</a></li>
+          <li routerLinkActive="active"><a routerLink="/tours" (click)="makeVisible(false)">TOUR</a></li>
+        </ul>
+      </div>
+      <!--/.nav-collapse --> 
+    </div>
+  </nav>
+</header>
+<style>
+
+.navbarDisplay{
+	display: none;
+	}
+</style>

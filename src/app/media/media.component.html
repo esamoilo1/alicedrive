@@ -1,0 +1,71 @@
+  <section id="section_5" class="news_section section_first">
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12 col-sm-8">
+            <div class="section_head_widget animatedParent ">
+              <h2 class="animated fadeInLeft">ALICE DRIVE видео</h2>
+            </div>
+            <!--section_head_widget--> 
+          </div>
+         <div class="col-xs-7 col-sm-3 text-right">
+               <div class="column_six">
+                 <div style="margin-bottom: 2px"> <a class="btn btn_buy_ticket" (click)="filterBy='all'">Всё</a> </div>
+                 <div style="margin-bottom: 2px"> <a class="btn btn_buy_ticket" (click)="filterBy='concerts'">Концерты</a> </div>
+                 <div style="margin-bottom: 2px"> <a class="btn btn_buy_ticket" (click)="filterBy='acoustic'">Записи</a> </div>
+
+            </div>
+         </div>
+
+
+        <!--row-->
+        <div class="row tracks_widget">
+          <div class="col-sm-10 col-xs-12 animatedParent"  *ngFor="let medias of (visibleMedias | mediaFilter:filterBy)">
+            <div style="float:left" class="col-sm-6 col-xs-6 track_box animated fadeInUp go">
+
+                 <!--column-->
+                 <figure class="animated fadeInUp go"> 
+                  <iframe [src]="medias.src | safe"  class="iframe" height="300px" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+
+                 </figure>
+                 {{medias.title}}
+
+                 </div>
+            <!--//news_box--> 
+          </div>
+     
+         
+          <!--column-->
+              
+      </div>
+      <div class="clearfix"></div>
+      <!--=============================tracks-Details=========================-->
+      <div class="trackLoading"><i class="fa fa-spin fa-refresh"></i></div>
+      <section id="tracksAjaxWrapper" class="container">
+        <a class="closeTrackAjax" href="#section_5"><i class="fa fa-times"></i></a>
+          <div id="tracksAjax" class="content_expander music_widget">
+        </div>
+      </section>
+      
+      
+      <!--//tracks-Details-->
+        </div>
+      </div>
+     </section>
+  
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+

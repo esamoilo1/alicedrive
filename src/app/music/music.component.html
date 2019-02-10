@@ -1,0 +1,81 @@
+ <!--=============
+    Music Tracks
+    ===============-->
+      <section class="news_section section_first">
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12 col-sm-8">
+            <div class="section_head_widget animatedParent ">
+              <h2 class="animated fadeInLeft">ALICE DRIVE музыка</h2>
+            </div>
+            <!--section_head_widget--> 
+          </div>
+        </div>
+        
+        <!--row-->
+        <div class="row tracks_widget">
+          <div class="col-sm-12 col-xs-12 animatedParent" style="border-color: #cc1313;border-bottom: 1px solid grey; margin-bottom: 29px;" *ngFor="let music of visibleMusic">
+                <div class="col-sm-6 col-xs-12 musicAbout" style="float:left" >
+                  <h5>{{music.title}}</h5>
+                    <figure><img class="track_box animated fadeInUp go" src="{{music.img}}">
+                    </figure>
+                </div>
+    
+            <div style="float:left; margin-top: 25px;" class="col-lg-6 col-md-6 col-sm-6 col-xs-12" >
+                      <div class="col-xs-12 col-sm-12 col-md-12" style="margin-top: 3px;" *ngFor="let musicDetail of music.musicList" >
+                             <audio controls style="float:left; margin-right: 8px;">
+                              <source  src="{{musicDetail.url}}" type="audio/mp3" preload="metadata" >
+                             </audio><audio src="{{musicDetail.url}}" preload="auto" ></audio>
+                             {{musicDetail.title}}
+                             <label *ngIf="musicDetail.textMusic !=''" class="popup-shower"  style="margin:10px; border-left: 1px solid grey; padding-left: 10px;"  for="{{musicDetail.id}}" >
+                              Слова
+                             </label>
+                
+                                                <div class="popup-wrapper">
+                                                  <input type="checkbox" class="popup-checkbox" id="{{musicDetail.id}}">
+                                                  <div class="popup">
+                                                    <div class="popup-content textMusic"  style="border: 1px solid grey;border-radius: 11px;">
+                                                      <label for="{{musicDetail.id}}" class="popup-closer">&#215;</label>
+                                                     <div class="textMusic">
+                                                      {{musicDetail.textMusic}}
+                                                       </div>
+                                                    </div>
+                                                  </div>
+                                                </div>                       
+                      </div>
+          
+              </div>
+
+          </div>
+
+  </div>
+          <!--column-->
+     </div>
+   
+  </section> 
+
+      
+      
+  <style id="jsbin-css">
+audio::-webkit-media-controls-panel,
+			audio::-webkit-media-controls-mute-button,
+			audio::-webkit-media-controls-play-button,
+			audio::-webkit-media-controls-timeline-container,
+			audio::-webkit-media-controls-current-time-display,
+			audio::-webkit-media-controls-time-remaining-display,
+			audio::-webkit-media-controls-timeline,
+			audio::-webkit-media-controls-volume-slider-container,
+			audio::-webkit-media-controls-volume-slider,
+			audio::-webkit-media-controls-seek-back-button,
+			audio::-webkit-media-controls-seek-forward-button,
+			audio::-webkit-media-controls-fullscreen-button,
+			audio::-webkit-media-controls-rewind-button,
+			audio::-webkit-media-controls-return-to-realtime-button,
+			audio::-webkit-media-controls-toggle-closed-captions-button 
+
+.popup-checkbox, .popup {
+  display: none;
+}
+
+
+    </style>

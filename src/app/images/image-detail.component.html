@@ -1,0 +1,54 @@
+     <section id="section_3" class="newsletter_section">
+        <div class="container">
+          <div class="row">
+            <div class="col-xs-12">
+                 <div class="team_prizes"> 
+                    <div class="row">
+                      <div ngFor="let image of visibleImages" id="thumbnailsList" >
+                          <div class="section_head_widget">
+                              <h2 class="animated fadeInDown">{{image.title}}</h2>
+                            </div>
+                          <div  *ngFor="let img of image.imageList" class=" animatedParent" >
+                              <figure class="animated fadeInUp go">
+                                                                      
+                                    <label class="col-xs-10 col-sm-5 col-md-4 popup-shower"  style="margin:10px"  for="{{img.id}}" ><a>
+                                      <img  style="width:''" src="{{img.url}}" style="border:1px solid grey" ></a></label>
+    
+    
+                              </figure>
+
+                              <div class="popup-wrapper">
+                                  <input type="checkbox" class="popup-checkbox" id="{{img.id}}">
+                                  <div class="popup">
+                                    <div class="popup-content">
+                                      <label for="{{img.id}}" class="popup-closer">&#215;</label>
+                                      <img src="{{img.url}}" style="border: 1px solid #ddd; border-radius: 6px;" >
+                                     
+                                    </div>
+
+               
+
+                                  </div>
+                                </div>
+                      </div>
+                  </div>
+                  </div>
+                </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+ 
+     
+
+
+  
+ 
+
+   
+   
+   
+   
+   
+
+      
