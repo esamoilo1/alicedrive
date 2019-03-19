@@ -1,20 +1,28 @@
-import { Component, OnChanges,Input} from '@angular/core';
-import { ImageService } from '../images/shared/image.service';
+import { Component, Input} from '@angular/core';
+import { AngularFireDatabase } from 'angularfire2/database';
 
 @Component({
     selector: 'gallery-component',
     templateUrl: './gallery.component.html',
     styleUrls:['./gallery.component.css']
 })
-export class GalleryComponent implements OnChanges { 
+export class GalleryComponent  { 
    
      title ='Recent Photos';
      @Input() filterBy?:string ='all'
      visibleImages : any[] = [];
-     constructor(private ImageService: ImageService){
-     this.visibleImages = this.ImageService.getImages() ;
-     }
-ngOnChanges(){
-    this.visibleImages =this.ImageService.getImages();
-}
+     constructor(public db: AngularFireDatabase){
+        this.getGalerry();
+
     }
+
+    getGalerry(){
+        return  this.db.list('/images').valueChanges()
+          .subscribe((data) =>{
+            this.visibleImages = data;
+          });
+       }
+
+
+    }
+

@@ -1,26 +1,33 @@
 
 
 import { Component, OnChanges} from '@angular/core';
-import { ActivatedRoute }     from '@angular/router';
 import { Music } from './shared/music';
-import { MusicService } from './shared/music.service';
+import { AngularFireDatabase } from 'angularfire2/database';
+
 
 @Component({
   selector: 'music-component',
   templateUrl: './music.component.html'
 })
-export class MusicComponent implements OnChanges  { 
+export class MusicComponent { 
     music: Music[];
     selectedText:string;
     selectedMusic: Music;
     itemclass :void;
 
      visibleMusic : any[] = [];
-     constructor(private musicService: MusicService,
-        private route: ActivatedRoute){
-     this.visibleMusic = this.musicService.getMusics() ;
+     constructor(public db: AngularFireDatabase){
+      this.getMusic();
 
+  }
+
+  getMusic(){
+      return  this.db.list('/music').valueChanges()
+        .subscribe((data) =>{
+          this.visibleMusic = data;
+        });
      }
+
 
    onSelect(music: Music,musicText:string): void {
         this.selectedMusic = music;
@@ -28,7 +35,4 @@ export class MusicComponent implements OnChanges  {
 
       }
      
-ngOnChanges(){
-    this.visibleMusic =this.musicService.getMusics();
-}
-    }
+  }

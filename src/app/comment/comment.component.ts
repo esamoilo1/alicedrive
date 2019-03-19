@@ -24,43 +24,27 @@ export class CommentComponent  {
    commentComment:  '';
    commentName:  '';
   isInvalid:  boolean;
-  commenten: Observable<any[]>;
+  commenten: {};
   commentValue ='';
 
   constructor(public db: AngularFireDatabase, private commentService: CommentService) {
-    this.commenten  = db.list('comments').valueChanges();
-    this.isInvalid = false;
-    this.loadComments();
+    this.getComment();
+
   }
-
-    loadComments() {
-      this.commenten  = this.db.list('comments').valueChanges();
-
-      this.commentService
-      .getComments()
-      .subscribe(user =>this.response =JSON.stringify(user)); 
-
-   }
+ getComment(){
+  return  this.db.list('/comments').valueChanges()
+    .subscribe((data) =>{
+      this.commenten = data;
+    console.log(this.commenten);
+    });
+ }
+   
    addComment(form: NgForm) {
-    this.db.list('/comments').push({content:this.commentValue});
+    this.db.list('/comments').push({comment:form.value.comment,name:form.value.name});
     this.commentValue = '';
-    console.log(form.value);
-    if (form.value.name === '' || form.value.comment === '' || form.value.name === undefined || form.value.comment === undefined) {
-      console.log(form);
 
-      this.isInvalid = true;
-      return false;
-    } else {
-      console.log(this.response);
+    console.log(this.commenten);
 
-      this.commentService.addComment(this.commentName, this.commentComment)
-        .subscribe(user =>this.response =JSON.stringify(user)); 
-        console.log(this.response);
-
-        }
-        console.log(this.response);
-
-    
    }
    deleteComment(comment: Comment) {
     this.commentService.deleteComment(comment)

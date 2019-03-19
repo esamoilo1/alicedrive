@@ -1,10 +1,6 @@
-import { Pipe, PipeTransform, Component , OnChanges,Input} from '@angular/core';
-import { ImageService } from './images/shared/image.service';
-import {TourService} from './tours/shared/tour.service';
-import {MediaService} from './media/shared/media.service';
-import {NewService} from './news/shared/news.service';
-import {MusicService} from './music/shared/music.service';
-import {BrowserModule, DomSanitizer} from '@angular/platform-browser'
+import { Pipe, PipeTransform, Component} from '@angular/core';
+import {DomSanitizer} from '@angular/platform-browser'
+import { AngularFireDatabase } from 'angularfire2/database';
 
 @Pipe({ name: 'safe' })
 export class SafePipe implements PipeTransform {
@@ -23,14 +19,45 @@ export class AboutComponent  {
   visibleMedias : any[] = [];
   visibleNews : any[] = [];
   visibleMusic : any[] = [];
-  constructor(private MusicService: MusicService,private NewService: NewService, private MediaService: MediaService,private ImageService: ImageService,private TourService: TourService){
-    
-    this.visibleTours = this.TourService.getTours() ;
-    this.visibleMedias = this.MediaService.getMedias() ;
-    this.visibleNews = this.NewService.getNews() ;
-    this.visibleImages = this.ImageService.getImages() ;
-    this.visibleMusic= this.MusicService.getMusics() ;
-  }
+  constructor(public db: AngularFireDatabase){
+    this.getNews();
+    this.getTours();
+    this.getMedia();
+    this.getMusic();
+    this.getGalerry();
+    this.getGalerry();
 
+
+  }
+  getTours(){
+    return  this.db.list('/tours').valueChanges()
+      .subscribe((data) =>{
+        this.visibleTours = data;
+      });
+   }
+   getMedia(){
+    return  this.db.list('/movies').valueChanges()
+      .subscribe((data) =>{
+        this.visibleMedias = data;
+      });
+   }
+   getGalerry(){
+    return  this.db.list('/images').valueChanges()
+      .subscribe((data) =>{
+        this.visibleImages = data;
+      });
+   }
+   getMusic(){
+    return  this.db.list('/music').valueChanges()
+      .subscribe((data) =>{
+        this.visibleMusic = data;
+      });
+   }
+   getNews(){
+    return  this.db.list('/news').valueChanges()
+      .subscribe((data) =>{
+        this.visibleNews = data;
+      });
+   }
   
    }

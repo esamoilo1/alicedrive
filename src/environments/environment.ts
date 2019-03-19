@@ -5,12 +5,12 @@
 export const environment = {
   production: true,
   firebase: { 
-    apiKey: "AIzaSyCAhZNq-CbEi5cOMXNI_F650MrAXzxqgt0",
-    authDomain: "alice-drive-5a031.firebaseapp.com",
-    databaseURL: "https://alice-drive-5a031.firebaseio.com/",
-    projectId: "alice-drive-5a031",
-    storageBucket: "alice-drive-5a031.appspot.com",
-    messagingSenderId: "302401816537"
+    apiKey: "AIzaSyAWcseTGAIzLtgkWpYukeENoFc0HTmvQQE",
+    authDomain: "alicedrive-5b5f5.firebaseapp.com",
+    databaseURL: "https://alicedrive-5b5f5.firebaseio.com",
+    projectId: "alicedrive-5b5f5",
+    storageBucket: "alicedrive-5b5f5.appspot.com",
+    messagingSenderId: "900725753355"
   }
 };
 

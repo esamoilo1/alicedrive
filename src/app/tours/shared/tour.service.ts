@@ -6,9 +6,7 @@ import { Injectable} from '@angular/core';
 @Injectable()
 export class TourService{
 visibleTours:any[];
- getTours(){
-     return this.visibleTours= TOUR.slice(0);
- }
+
  getTour(id:number){
      return TOUR.slice(0).find(tour => tour.id==id)
  }

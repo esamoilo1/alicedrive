@@ -1,7 +1,7 @@
-import { Pipe, PipeTransform, Component ,OnInit, OnChanges,Input} from '@angular/core';
+import { Pipe, PipeTransform, Component ,Input} from '@angular/core';
 
-import { Media } from './shared/media';
-import { MediaService } from './shared/media.service';
+import { AngularFireDatabase } from 'angularfire2/database';
+
 //our root app component
 import {BrowserModule, DomSanitizer} from '@angular/platform-browser'
 
@@ -17,20 +17,23 @@ export class SafePipe implements PipeTransform {
   selector: 'media-component',
   templateUrl: './media.component.html'
 })
-export class MediaComponent implements OnChanges {
+export class MediaComponent {
   title ='Recent Photos';
   @Input() filterBy?:string ='all'
   visibleMedias : any[] = [];
  name:string;
-  constructor(private MediaService: MediaService){
-  this.visibleMedias = this.MediaService.getMedias() ;
-  this.name = 'Angular2 (Release Candidate!)'
+ constructor(public db: AngularFireDatabase){
+  this.getMedia();
 
-  }
-
-ngOnChanges(){
- this.visibleMedias =this.MediaService.getMedias();
 }
+
+getMedia(){
+  return  this.db.list('/movies').valueChanges()
+    .subscribe((data) =>{
+      this.visibleMedias = data;
+    });
+ }
+
  
 
 }

@@ -1,6 +1,7 @@
 import { Component , OnInit} from '@angular/core';
-import { ImageService } from './shared/image.service';
 import { ActivatedRoute } from '@angular/router';
+import { AngularFireDatabase } from 'angularfire2/database';
+
 
 @Component({
   selector: 'imagedetail-component',
@@ -8,13 +9,24 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls:['./image-detail.component.css'],
 
 })
-export class ImageDetailComponent implements OnInit {
-  image: any
-  constructor(private imageService: ImageService, private route:ActivatedRoute){
-  }
-ngOnInit(){
-  this.image =this.imageService.getImage(
-   + this.route.snapshot.params['id']
-  )
-}
+export class ImageDetailComponent  {
+  image: any;
+  visibleImages : any[] = [];
+
+  constructor(public db: AngularFireDatabase,private route:ActivatedRoute){
+    this.getImage(
+      + this.route.snapshot.params['id']
+     );
+    
+            }
+        
+      getImage(id:number){
+            return  this.db.list('/images').valueChanges()
+              .subscribe((data) =>{
+                this.visibleImages = data;
+                this.image = this.visibleImages.filter(img => img.id==id)[0];
+              });
+           }
+      
+      
 }

@@ -32,11 +32,10 @@
    </form>
 
   <ul>
-    <li *ngFor="let comment of comments | reverse" style="border-bottom: 1px solid grey;">
+    <li *ngFor="let comment of commenten | reverse" style="border-bottom: 1px solid grey;width:50%">
       Имя: {{comment.name}}<br>
       Комментарии: {{comment.comment}}<br>
       {{response}}
-      <button class="btn btn-xs btn-danger" (click)="deleteComment(comment)">Удалить комментарий</button>
 
     </li>
   </ul>
